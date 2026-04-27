@@ -8,19 +8,25 @@ build/
 bin/
 obj/
 out/
+dist-ssr/
 
 # Environment variables
 .env
+.env.*
+!.env.example
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
 # IDE / Editor folders
+.vs/
 .vscode/
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
+*.sw?
 *.user
 *.suo
 *.userosscache
@@ -36,3 +42,9 @@ yarn-debug.log*
 yarn-error.log*
 logs/
 *.log
+
+# C# / .NET specific
+[Bb]in/
+[Oo]bj/
+appsettings.Local.json
+appsettings.*.local.json
