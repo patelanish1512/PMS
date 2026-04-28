@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
       const response = await apiClient.post<AuthResponse>('/Auth/login', data);
       const { token, userId, fullName, email, role } = response.data;
       setAuth({ id: userId, fullName, email, role }, token);
-      navigate('/');
+      navigate('/', { replace: true });
     } catch (err: unknown) {
       const message = axios.isAxiosError<{ message?: string }>(err)
         ? err.response?.data?.message

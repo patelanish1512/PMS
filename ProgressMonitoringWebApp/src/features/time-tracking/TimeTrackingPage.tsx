@@ -148,6 +148,14 @@ const TimeTrackingPage: React.FC = () => {
     });
   };
 
+  const handleStartTimer = () => {
+    if (!selectedProjectId) {
+      toast.error('Please select a project before starting the timer');
+      return;
+    }
+    startTimer();
+  };
+
   if (isLoading) {
     return (
       <div className="text-center py-5">
@@ -186,7 +194,7 @@ const TimeTrackingPage: React.FC = () => {
               <h2 className="display-1 fw-bold mb-4 font-monospace">{formatTime(displayTime)}</h2>
               <div className="d-flex gap-3">
                 {!isTracking ? (
-                  <Button variant="primary" className="px-5 py-3 rounded-4 fw-bold d-flex align-items-center gap-2" onClick={startTimer}>
+                  <Button variant="primary" className="px-5 py-3 rounded-4 fw-bold d-flex align-items-center gap-2" onClick={handleStartTimer}>
                     <Play size={20} fill="currentColor" /> Start Timer
                   </Button>
                 ) : (

@@ -32,6 +32,12 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
+  const { token } = useAuthStore();
+  if (token) return <Navigate to="/" replace />;
+  return <>{children}</>;
+};
+
 const PermissionRoute = ({ module, children }: { module: string; children: React.ReactNode }) => {
   const { can, isLoading } = usePermissions();
 
@@ -55,7 +61,7 @@ function App() {
         <PermissionProvider>
           <Suspense fallback={<PageFallback />}>
             <Routes>
-              <Route path="/login" element={<LoginPage />} />
+              <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
               <Route
                 path="/*"
                 element={
